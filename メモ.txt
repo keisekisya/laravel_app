@@ -1,0 +1,85 @@
+docker-compose down --volumes
+docker-compose up --build
+
+docker exec -it laravel_app
+docker restart laravel_app
+php artisan session:table
+php artisan migrate
+php artisan make:controller HelloController
+
+
+
+🟢 基本操作
+コマンド	説明
+about	Laravelアプリケーションの基本情報を表示します。
+serve	開発サーバーを起動します（http://127.0.0.1:8000）。
+env	現在の環境（local、productionなど）を表示。
+down / up	メンテナンスモードの切り替え。downでメンテナンス中にし、upで解除。
+inspire	名言が出てきます（完全にジョーク系です）。
+
+⚙️ キャッシュ関連
+コマンド	説明
+config:cache	設定ファイルをキャッシュしてパフォーマンスを向上。
+config:clear	設定キャッシュを削除。開発中はこちらを多用。
+route:cache	ルーティングのキャッシュを作成。
+route:clear	ルーティングのキャッシュ削除。
+view:cache	Bladeテンプレートを事前にコンパイル。
+view:clear	コンパイル済みBladeファイルを削除。
+optimize	キャッシュなどを最適化（config, route, viewを含む）。
+optimize:clear	上記最適化キャッシュを全てクリア。
+
+🛠 モデル・マイグレーション・シーダー
+コマンド	説明
+make:model <名>	モデルクラスを作成。-mでマイグレーション付き。
+make:migration	マイグレーションファイル作成。
+migrate	マイグレーションを実行。
+migrate:refresh	一旦ロールバックして再実行。
+migrate:fresh	テーブルを全削除→再マイグレート。
+db:seed	Seeder（初期データ挿入）を実行。
+make:seeder	Seederファイルを作成。
+
+🔧 コントローラー・リソースなど
+コマンド	説明
+make:controller <名>	コントローラー作成。--resourceでリソースコントローラー。
+make:request <名>	フォームバリデーション用のクラス。
+make:resource <名>	APIレスポンスの整形に使うResourceクラス。
+
+📩 認証・ユーザー関連
+コマンド	説明
+auth:clear-resets	古いパスワードリセットトークンを削除。
+install:api	Laravel SanctumやPassportのAPI認証セットアップ。
+
+🧪 テスト・Tinker
+コマンド	説明
+test	PHPUnitベースのテストを実行。
+make:test	テストクラスの作成。
+tinker	Laravelアプリと対話的にやりとり可能なREPL（PHPのREPL）。
+
+⏱ スケジュールとキュー
+コマンド	説明
+schedule:run	crontabで使う、スケジュール登録の実行。
+queue:work	キューワーカーを起動。
+queue:retry	失敗したジョブを再試行。
+queue:failed	失敗したキュージョブを一覧表示。
+
+📦 パッケージと公開
+コマンド	説明
+vendor:publish	パッケージの設定ファイルやアセットをconfigやpublicにコピー。
+package:discover	composer install後などにパッケージ情報を再構築。
+
+その他便利系
+コマンド	説明
+storage:link	public/storage シンボリックリンクを作成。
+cache:clear	アプリケーションキャッシュ削除（config:clear とは別）。
+route:list	ルーティングの一覧を表示（APIの確認などに便利）。
+
+🔄 よく使う組み合わせ例
+bash
+php artisan make:model User -mcr
+モデル、マイグレーション、コントローラー（resource）を一気に作成。
+
+bash
+php artisan migrate:fresh --seed
+データベース初期化＋Seeder実行。
+
+
