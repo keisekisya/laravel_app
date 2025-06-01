@@ -23,6 +23,7 @@ services:
       DB_PASSWORD: root
     command: >
       sh -c "composer install &&
+             composer require jenssegers/agent &&
              cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini &&
              php artisan key:generate &&
              php artisan migrate &&
